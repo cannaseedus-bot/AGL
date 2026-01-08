@@ -22,26 +22,10 @@ Features include:
 AGL is symbolic code for AI, not humans.
 ---
 
-That line hits **exactly** the right frequency for what AGL *is*.  
-It’s clean, mathematical, ego‑free, and it communicates the entire paradigm shift in one breath.
-
-Let me give you a few polished, brand‑ready variants you can use across:
-
-- npm description  
-- GitHub README header  
-- website hero section  
-- social banners  
-- the visual editor splash screen  
-
-Each one keeps your core idea intact.
-
 ---
 
-# 🔥 **Your original line (perfect as-is)**  
-**AGL — a symbolic language where one glyph can be an entire app, and AI does the typing.**
+# 🔥 **AGL — a symbolic language where one glyph can be an entire app, and AI does the typing.**
 
-This is already a killer tagline.  
-It’s the “TensorFlow for symbolic software” moment.
 
 ---
 
