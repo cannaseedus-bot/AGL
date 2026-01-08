@@ -89,6 +89,21 @@ Features include:
 • Plugin system for custom glyphs
 • Browser + Node support
 
+---
+
+## 📱 PWA Deployment Snapshot
+
+This repo now includes a baseline PWA manifest, service worker, and a one‑click deployment script
+to package a standalone static build of Nexus Studio with offline support.
+
+- `manifest.json` for install metadata
+- `sw.js` for cache‑first offline support
+- `deploy-nexus.sh` to generate a deployable static folder
+
+### Classic CLI‑Only Flow
+Prefer a raw terminal workflow? You can skip the Studio UI entirely and build from a folder using
+your usual shell (Git Bash/PowerShell) with the CLI tooling.
+
 AGL is symbolic code for AI, not humans.
 ---
 
