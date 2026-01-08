@@ -11,6 +11,14 @@ const ASSETS_TO_CACHE = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
+const syncPendingAPICalls = async () => {
+  return Promise.resolve();
+};
+
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches
+      .open(CACHE_NAME)
     caches.open(CACHE_NAME)
       .then((cache) => cache.addAll(ASSETS_TO_CACHE))
       .then(() => self.skipWaiting())
@@ -27,6 +35,28 @@ self.addEventListener('activate', (event) => {
         return undefined;
       })
     )).then(() => self.clients.claim())
+    caches
+      .keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames.map((cacheName) => {
+            if (cacheName !== CACHE_NAME) {
+              return caches.delete(cacheName);
+            }
+            return undefined;
+          })
+        );
+      })
+    caches.keys()
+      .then((cacheNames) => Promise.all(
+        cacheNames.map((cacheName) => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+          return null;
+        })
+      ))
+      .then(() => self.clients.claim())
   );
 });
 
@@ -40,10 +70,24 @@ self.addEventListener('fetch', (event) => {
       .then((response) => {
         if (response.status === 200) {
           const responseClone = response.clone();
+          caches
+            .open(CACHE_NAME)
           caches.open(CACHE_NAME)
             .then((cache) => cache.put(event.request, responseClone));
         }
         return response;
+      })
+      .catch(() => {
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          const accepts = event.request.headers.get('accept') || '';
+          if (accepts.includes('text/html')) {
+            return caches.match('/index.html');
+          }
+          return undefined;
+        });
       })
       .catch(() => caches.match(event.request)
         .then((cachedResponse) => {
@@ -65,6 +109,12 @@ self.addEventListener('sync', (event) => {
 });
 
 self.addEventListener('push', (event) => {
+  if (!event.data) {
+    return;
+  }
+
+  const data = event.data.json();
+
   const data = event.data?.json();
 
   if (!data) {
@@ -91,6 +141,7 @@ self.addEventListener('push', (event) => {
     ]
   };
 
+  event.waitUntil(self.registration.showNotification(data.title, options));
   event.waitUntil(
     self.registration.showNotification(data.title, options)
   );
@@ -101,6 +152,12 @@ self.addEventListener('notificationclick', (event) => {
 
   if (event.action === 'open') {
     event.waitUntil(
+      clients.matchAll({ type: 'window' }).then((clientList) => {
+        if (clientList.length > 0) {
+          return clientList[0].focus();
+        }
+        return clients.openWindow(event.notification.data.url);
+      })
       clients.matchAll({ type: 'window' })
         .then((clientList) => {
           if (clientList.length > 0) {
