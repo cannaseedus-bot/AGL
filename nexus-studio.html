@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="nexus-dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXUS Studio — Modern App Builder</title>
+  <style>
+    /* NEXUS DESIGN SYSTEM */
+    :root {
+      /* Color Palette */
+      --nexus-void: #0a0a0f;
+      --nexus-deep: #12121a;
+      --nexus-surface: #1a1a24;
+      --nexus-elevated: #232331;
+      --nexus-highest: #2d2d3e;
+
+      /* Accents */
+      --nexus-cyan: #00f3ff;
+      --nexus-purple: #a855f7;
+      --nexus-pink: #ec4899;
+      --nexus-emerald: #10b981;
+      --nexus-amber: #f59e0b;
+
+      /* Text */
+      --text-primary: #f8fafc;
+      --text-secondary: #cbd5e1;
+      --text-muted: #64748b;
+
+      /* Gradients */
+      --gradient-cyber: linear-gradient(135deg, var(--nexus-cyan), var(--nexus-purple));
+      --gradient-dream: linear-gradient(135deg, var(--nexus-pink), var(--nexus-purple));
+      --gradient-deep: linear-gradient(135deg, var(--nexus-void), var(--nexus-deep));
+
+      /* Effects */
+      --glow-cyan: 0 0 30px rgba(0, 243, 255, 0.3);
+      --glow-purple: 0 0 30px rgba(168, 85, 247, 0.3);
+      --glow-pink: 0 0 30px rgba(236, 72, 153, 0.3);
+
+      /* Spacing */
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+      --radius-2xl: 32px;
+    }
+
+    /* Base Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: var(--nexus-void);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow: hidden;
+      height: 100vh;
+    }
+
+    /* Main Layout */
+    .nexus-container {
+      display: grid;
+      grid-template-columns: 280px 1fr 400px;
+      height: 100vh;
+      gap: 1px;
+      background: var(--nexus-surface);
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--nexus-deep);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .sidebar-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--nexus-surface);
+      background: var(--gradient-deep);
+    }
+
+    .nexus-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .nexus-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--gradient-cyber);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+    }
+
+    .nexus-title {
+      font-size: 24px;
+      font-weight: 800;
+      background: var(--gradient-cyber);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 20px 0;
+    }
+
+    .nav-section {
+      margin-bottom: 32px;
+    }
+
+    .nav-title {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      padding: 0 24px 12px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 24px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .nav-item:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-primary);
+    }
+
+    .nav-item.active {
+      background: rgba(0, 243, 255, 0.1);
+      color: var(--nexus-cyan);
+      border-right: 3px solid var(--nexus-cyan);
+    }
+
+    .nav-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--nexus-purple);
+      color: white;
+      font-size: 10px;
+      padding: 2px 8px;
+      border-radius: 10px;
+    }
+
+    /* Component Library */
+    .components-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      padding: 20px;
+    }
+
+    .component-card {
+      background: var(--nexus-surface);
+      border: 1px solid var(--nexus-elevated);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      cursor: grab;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .component-card:hover {
+      border-color: var(--nexus-cyan);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .component-preview {
+      height: 80px;
+      background: var(--nexus-elevated);
+      border-radius: var(--radius-sm);
+      margin-bottom: 12px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .component-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .component-desc {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Canvas Area */
+    .canvas-area {
+      background: var(--nexus-void);
+      position: relative;
+      overflow: auto;
+    }
+
+    .canvas-header {
+      position: sticky;
+      top: 0;
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 24px;
+      border-bottom: 1px solid var(--nexus-surface);
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .canvas-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-secondary);
+    }
+
+    .canvas-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .canvas-btn {
+      padding: 8px 16px;
+      background: var(--nexus-surface);
+      border: 1px solid var(--nexus-elevated);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 13px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .canvas-btn:hover {
+      background: var(--nexus-elevated);
+      color: var(--text-primary);
+    }
+
+    .canvas-btn.primary {
+      background: var(--nexus-cyan);
+      color: var(--nexus-void);
+      border-color: var(--nexus-cyan);
+    }
+
+    .canvas-btn.primary:hover {
+      background: #00d9e3;
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* Drop Zone */
+    .drop-zone {
+      min-height: 600px;
+      padding: 40px;
+      position: relative;
+    }
+
+    .drop-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+
+    /* Dropped Components */
+    .dropped-component {
+      position: absolute;
+      border: 2px dashed rgba(0, 243, 255, 0.3);
+      border-radius: var(--radius-md);
+      background: rgba(10, 10, 15, 0.8);
+      backdrop-filter: blur(10px);
+      transition: all 0.3s ease;
+      cursor: move;
+    }
+
+    .dropped-component:hover {
+      border-color: var(--nexus-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    .component-handle {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 32px;
+      background: rgba(0, 243, 255, 0.1);
+      border-bottom: 1px solid rgba(0, 243, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      cursor: move;
+      border-radius: var(--radius-md) var(--radius-md) 0 0;
+    }
+
+    .component-handle-title {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--nexus-cyan);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .component-handle-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .handle-btn {
+      width: 20px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .handle-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+      color: var(--text-primary);
+    }
+
+    .component-content {
+      padding: 20px;
+    }
+
+    /* Properties Panel */
+    .properties-panel {
+      background: var(--nexus-deep);
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .properties-header {
+      padding: 24px;
+      border-bottom: 1px solid var(--nexus-surface);
+      background: var(--gradient-deep);
+    }
+
+    .properties-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .properties-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .properties-tabs {
+      display: flex;
+      border-bottom: 1px solid var(--nexus-surface);
+      background: var(--nexus-surface);
+    }
+
+    .properties-tab {
+      flex: 1;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .properties-tab:hover {
+      color: var(--text-primary);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .properties-tab.active {
+      color: var(--nexus-cyan);
+      border-bottom: 2px solid var(--nexus-cyan);
+      background: rgba(0, 243, 255, 0.05);
+    }
+
+    .properties-content {
+      flex: 1;
+      padding: 24px;
+      overflow-y: auto;
+    }
+
+    .property-group {
+      margin-bottom: 32px;
+    }
+
+    .property-group-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .property-item {
+      margin-bottom: 16px;
+    }
+
+    .property-label {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+
+    .property-input {
+      width: 100%;
+      background: var(--nexus-surface);
+      border: 1px solid var(--nexus-elevated);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .property-input:focus {
+      outline: none;
+      border-color: var(--nexus-cyan);
+      box-shadow: 0 0 0 2px rgba(0, 243, 255, 0.1);
+    }
+
+    .color-picker {
+      display: flex;
+      gap: 8px;
+    }
+
+    .color-option {
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .color-option:hover {
+      transform: scale(1.1);
+    }
+
+    .color-option.active {
+      border-color: var(--nexus-cyan);
+      box-shadow: var(--glow-cyan);
+    }
+
+    /* AI Chat Assistant */
+    .ai-assistant {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 360px;
+      background: var(--nexus-deep);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--nexus-elevated);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+      z-index: 1000;
+      overflow: hidden;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s ease;
+    }
+
+    .ai-assistant.open {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .ai-header {
+      padding: 16px 20px;
+      background: var(--gradient-cyber);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .ai-title {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: white;
+      font-weight: 600;
+    }
+
+    .ai-close {
+      background: rgba(255, 255, 255, 0.2);
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .ai-close:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .ai-messages {
+      height: 300px;
+      overflow-y: auto;
+      padding: 20px;
+    }
+
+    .ai-message {
+      margin-bottom: 16px;
+      max-width: 85%;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .ai-message.user {
+      margin-left: auto;
+      background: rgba(0, 243, 255, 0.1);
+      padding: 12px 16px;
+      border-radius: 12px 12px 0 12px;
+      border: 1px solid rgba(0, 243, 255, 0.2);
+    }
+
+    .ai-message.assistant {
+      background: rgba(168, 85, 247, 0.1);
+      padding: 12px 16px;
+      border-radius: 0 12px 12px 12px;
+      border: 1px solid rgba(168, 85, 247, 0.2);
+    }
+
+    .ai-input {
+      padding: 16px;
+      border-top: 1px solid var(--nexus-surface);
+      display: flex;
+      gap: 12px;
+    }
+
+    .ai-input-field {
+      flex: 1;
+      background: var(--nexus-surface);
+      border: 1px solid var(--nexus-elevated);
+      border-radius: var(--radius-md);
+      padding: 12px;
+      color: var(--text-primary);
+      font-size: 13px;
+      font-family: inherit;
+      resize: none;
+    }
+
+    .ai-send {
+      width: 44px;
+      height: 44px;
+      background: var(--gradient-cyber);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border: none;
+      color: white;
+    }
+
+    /* Preview Mode */
+    .preview-mode .dropped-component {
+      border: none;
+      cursor: default;
+    }
+
+    .preview-mode .component-handle {
+      display: none;
+    }
+
+    /* Toolbar */
+    .toolbar {
+      position: absolute;
+      top: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(10, 10, 15, 0.95);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--nexus-elevated);
+      border-radius: var(--radius-lg);
+      padding: 8px;
+      display: flex;
+      gap: 4px;
+      z-index: 100;
+    }
+
+    .toolbar-btn {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: var(--nexus-surface);
+      border: 1px solid var(--nexus-elevated);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text-secondary);
+      transition: all 0.2s ease;
+    }
+
+    .toolbar-btn:hover {
+      background: var(--nexus-elevated);
+      color: var(--text-primary);
+    }
+
+    .toolbar-btn.active {
+      background: var(--nexus-cyan);
+      color: var(--nexus-void);
+      border-color: var(--nexus-cyan);
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Component Previews */
+    .hero-preview {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      height: 100%;
+    }
+
+    .hero-title {
+      width: 80%;
+      height: 12px;
+      background: var(--nexus-cyan);
+      border-radius: 4px;
+    }
+
+    .hero-subtitle {
+      width: 60%;
+      height: 8px;
+      background: var(--text-muted);
+      border-radius: 4px;
+    }
+
+    .hero-button {
+      width: 120px;
+      height: 32px;
+      background: var(--nexus-purple);
+      border-radius: var(--radius-md);
+      margin-top: 8px;
+    }
+
+    .card-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      height: 100%;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 40px;
+      background: var(--nexus-elevated);
+      border-radius: var(--radius-sm);
+    }
+
+    .card-title {
+      width: 70%;
+      height: 10px;
+      background: var(--text-primary);
+      border-radius: 4px;
+    }
+
+    .card-text {
+      width: 100%;
+      height: 6px;
+      background: var(--text-muted);
+      border-radius: 4px;
+    }
+
+    .card-text:nth-child(4) {
+      width: 80%;
+    }
+
+    .form-preview {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%;
+    }
+
+    .form-input {
+      width: 100%;
+      height: 12px;
+      background: var(--nexus-elevated);
+      border-radius: 4px;
+    }
+
+    .form-button {
+      width: 100%;
+      height: 24px;
+      background: var(--nexus-emerald);
+      border-radius: var(--radius-sm);
+      margin-top: 8px;
+    }
+
+    /* Responsive */
+    @media (max-width: 1400px) {
+      .nexus-container {
+        grid-template-columns: 240px 1fr;
+      }
+
+      .properties-panel {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nexus-container {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="nexus-container">
+    <!-- Left Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="nexus-logo">
+          <div class="nexus-icon">N</div>
+          <div class="nexus-title">NEXUS</div>
+        </div>
+      </div>
+
+      <div class="sidebar-nav">
+        <div class="nav-section">
+          <div class="nav-title">Build</div>
+          <div class="nav-item active">
+            <div class="nav-icon">📐</div>
+            <span>Canvas</span>
+            <div class="nav-badge">Live</div>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🧩</div>
+            <span>Components</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">📄</div>
+            <span>Pages</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🎨</div>
+            <span>Themes</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-title">Design</div>
+          <div class="nav-item">
+            <div class="nav-icon">🎯</div>
+            <span>Typography</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🌈</div>
+            <span>Colors</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">📱</div>
+            <span>Responsive</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">✨</div>
+            <span>Effects</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-title">Content</div>
+          <div class="nav-item">
+            <div class="nav-icon">📝</div>
+            <span>Copy</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🖼️</div>
+            <span>Media</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🔗</div>
+            <span>Links</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">📊</div>
+            <span>Data</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-title">Logic</div>
+          <div class="nav-item">
+            <div class="nav-icon">⚡</div>
+            <span>Actions</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🔄</div>
+            <span>Workflows</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">🔐</div>
+            <span>Authentication</span>
+          </div>
+          <div class="nav-item">
+            <div class="nav-icon">💾</div>
+            <span>Database</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Canvas -->
+    <div class="canvas-area">
+      <div class="canvas-header">
+        <div class="canvas-title">Dashboard App</div>
+        <div class="canvas-actions">
+          <button class="canvas-btn">Save</button>
+          <button class="canvas-btn">Preview</button>
+          <button class="canvas-btn primary">Publish</button>
+        </div>
+      </div>
+
+      <div class="drop-zone" id="canvas">
+        <div class="drop-grid"></div>
+
+        <!-- Dropped Components will appear here -->
+        <div class="dropped-component" style="top: 100px; left: 100px; width: 800px; height: 400px;">
+          <div class="component-handle">
+            <div class="component-handle-title">Hero Section</div>
+            <div class="component-handle-actions">
+              <div class="handle-btn">⋮</div>
+              <div class="handle-btn">×</div>
+            </div>
+          </div>
+          <div class="component-content">
+            <h2 style="font-size: 48px; margin-bottom: 16px; color: var(--text-primary);">Welcome to Your Dashboard</h2>
+            <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 32px;">Build amazing applications without writing code.</p>
+            <button style="background: var(--nexus-cyan); color: var(--nexus-void); border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+              Get Started
+            </button>
+          </div>
+        </div>
+
+        <div class="dropped-component" style="top: 550px; left: 100px; width: 350px; height: 300px;">
+          <div class="component-handle">
+            <div class="component-handle-title">Stats Card</div>
+            <div class="component-handle-actions">
+              <div class="handle-btn">⋮</div>
+              <div class="handle-btn">×</div>
+            </div>
+          </div>
+          <div class="component-content">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 20px;">
+              <div style="width: 48px; height: 48px; background: rgba(0, 243, 255, 0.2); border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 24px;">📈</span>
+              </div>
+              <div>
+                <div style="font-size: 24px; font-weight: 700; color: var(--text-primary);">1,284</div>
+                <div style="font-size: 14px; color: var(--text-muted);">Total Users</div>
+              </div>
+            </div>
+            <div style="font-size: 13px; color: var(--text-secondary);">
+              <span style="color: var(--nexus-emerald);">↑ 12%</span> from last month
+            </div>
+          </div>
+        </div>
+
+        <div class="dropped-component" style="top: 550px; left: 500px; width: 400px; height: 300px;">
+          <div class="component-handle">
+            <div class="component-handle-title">Data Table</div>
+            <div class="component-handle-actions">
+              <div class="handle-btn">⋮</div>
+              <div class="handle-btn">×</div>
+            </div>
+          </div>
+          <div class="component-content">
+            <table style="width: 100%; border-collapse: collapse;">
+              <thead>
+                <tr style="border-bottom: 1px solid var(--nexus-elevated);">
+                  <th style="text-align: left; padding: 8px 0; color: var(--text-muted); font-weight: 600;">User</th>
+                  <th style="text-align: left; padding: 8px 0; color: var(--text-muted); font-weight: 600;">Status</th>
+                  <th style="text-align: left; padding: 8px 0; color: var(--text-muted); font-weight: 600;">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr style="border-bottom: 1px solid var(--nexus-surface);">
+                  <td style="padding: 12px 0; color: var(--text-primary);">Alex Johnson</td>
+                  <td style="padding: 12px 0;"><span style="background: rgba(16, 185, 129, 0.2); color: var(--nexus-emerald); padding: 4px 12px; border-radius: 20px; font-size: 12px;">Active</span></td>
+                  <td style="padding: 12px 0;"><button style="background: transparent; border: 1px solid var(--nexus-elevated); color: var(--text-secondary); padding: 4px 12px; border-radius: 6px; cursor: pointer;">Edit</button></td>
+                </tr>
+                <tr>
+                  <td style="padding: 12px 0; color: var(--text-primary);">Sam Rivera</td>
+                  <td style="padding: 12px 0;"><span style="background: rgba(245, 158, 11, 0.2); color: var(--nexus-amber); padding: 4px 12px; border-radius: 20px; font-size: 12px;">Pending</span></td>
+                  <td style="padding: 12px 0;"><button style="background: transparent; border: 1px solid var(--nexus-elevated); color: var(--text-secondary); padding: 4px 12px; border-radius: 6px; cursor: pointer;">Edit</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Floating Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-btn active" title="Select">
+          <span>↖</span>
+        </div>
+        <div class="toolbar-btn" title="Add Component">
+          <span>+</span>
+        </div>
+        <div class="toolbar-btn" title="Text">
+          <span>T</span>
+        </div>
+        <div class="toolbar-btn" title="Container">
+          <span>□</span>
+        </div>
+        <div class="toolbar-btn" title="Image">
+          <span>🖼️</span>
+        </div>
+        <div class="toolbar-btn" title="Button">
+          <span>🔘</span>
+        </div>
+        <div class="toolbar-btn" title="Form">
+          <span>📝</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Properties Panel -->
+    <div class="properties-panel">
+      <div class="properties-header">
+        <div class="properties-title">Component Properties</div>
+        <div class="properties-subtitle">Customize selected element</div>
+      </div>
+
+      <div class="properties-tabs">
+        <div class="properties-tab active">Design</div>
+        <div class="properties-tab">Content</div>
+        <div class="properties-tab">Actions</div>
+        <div class="properties-tab">Advanced</div>
+      </div>
+
+      <div class="properties-content">
+        <div class="property-group">
+          <div class="property-group-title">Layout</div>
+          <div class="property-item">
+            <label class="property-label">Width</label>
+            <input type="range" class="property-input" min="200" max="1200" value="800">
+          </div>
+          <div class="property-item">
+            <label class="property-label">Height</label>
+            <input type="range" class="property-input" min="100" max="800" value="400">
+          </div>
+          <div class="property-item">
+            <label class="property-label">Padding</label>
+            <input type="range" class="property-input" min="0" max="80" value="20">
+          </div>
+        </div>
+
+        <div class="property-group">
+          <div class="property-group-title">Colors</div>
+          <div class="property-item">
+            <label class="property-label">Background</label>
+            <div class="color-picker">
+              <div class="color-option active" style="background: rgba(10, 10, 15, 0.8);"></div>
+              <div class="color-option" style="background: var(--nexus-surface);"></div>
+              <div class="color-option" style="background: var(--nexus-cyan);"></div>
+              <div class="color-option" style="background: var(--nexus-purple);"></div>
+              <div class="color-option" style="background: var(--nexus-pink);"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="property-group">
+          <div class="property-group-title">Typography</div>
+          <div class="property-item">
+            <label class="property-label">Font Size</label>
+            <select class="property-input">
+              <option>Small (14px)</option>
+              <option>Medium (16px)</option>
+              <option selected>Large (18px)</option>
+              <option>Extra Large (24px)</option>
+            </select>
+          </div>
+          <div class="property-item">
+            <label class="property-label">Font Weight</label>
+            <select class="property-input">
+              <option>Regular</option>
+              <option selected>Medium</option>
+              <option>Bold</option>
+              <option>Heavy</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="property-group">
+          <div class="property-group-title">Effects</div>
+          <div class="property-item">
+            <label class="property-label">Shadow</label>
+            <select class="property-input">
+              <option>None</option>
+              <option>Subtle</option>
+              <option selected>Medium</option>
+              <option>Glow</option>
+            </select>
+          </div>
+          <div class="property-item">
+            <label class="property-label">Border Radius</label>
+            <select class="property-input">
+              <option>Sharp</option>
+              <option>Rounded (8px)</option>
+              <option selected>Pill (20px)</option>
+              <option>Circle</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Assistant (Hidden by default) -->
+  <div class="ai-assistant" id="ai-assistant">
+    <div class="ai-header">
+      <div class="ai-title">
+        <span>✨</span>
+        AI Assistant
+      </div>
+      <div class="ai-close" onclick="toggleAI()">
+        ×
+      </div>
+    </div>
+    <div class="ai-messages" id="ai-messages">
+      <div class="ai-message assistant">
+        Hi! I'm your AI assistant. How can I help you build your app today?
+      </div>
+    </div>
+    <div class="ai-input">
+      <textarea class="ai-input-field" placeholder="Describe what you want to add or change..." rows="2"></textarea>
+      <button class="ai-send" onclick="sendAIMessage()">→</button>
+    </div>
+  </div>
+
+  <!-- Component Library Modal -->
+  <div id="component-library" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.8); z-index: 2000; padding: 40px;">
+    <div style="background: var(--nexus-deep); border-radius: var(--radius-lg); max-width: 1000px; margin: 0 auto; height: 100%; display: flex; flex-direction: column;">
+      <div style="padding: 24px; border-bottom: 1px solid var(--nexus-surface);">
+        <h2 style="font-size: 24px; color: var(--text-primary);">Component Library</h2>
+      </div>
+      <div style="flex: 1; overflow-y: auto; padding: 24px;">
+        <div class="components-grid">
+          <!-- Hero Components -->
+          <div class="component-card" data-type="hero" onclick="addComponent('hero')">
+            <div class="component-preview">
+              <div class="hero-preview">
+                <div class="hero-title"></div>
+                <div class="hero-subtitle"></div>
+                <div class="hero-button"></div>
+              </div>
+            </div>
+            <div class="component-name">Hero Section</div>
+            <div class="component-desc">Full-width banner with title & CTA</div>
+          </div>
+
+          <div class="component-card" data-type="card" onclick="addComponent('card')">
+            <div class="component-preview">
+              <div class="card-preview">
+                <div class="card-image"></div>
+                <div class="card-title"></div>
+                <div class="card-text"></div>
+                <div class="card-text"></div>
+              </div>
+            </div>
+            <div class="component-name">Content Card</div>
+            <div class="component-desc">Card with image and text</div>
+          </div>
+
+          <div class="component-card" data-type="form" onclick="addComponent('form')">
+            <div class="component-preview">
+              <div class="form-preview">
+                <div class="form-input"></div>
+                <div class="form-input"></div>
+                <div class="form-button"></div>
+              </div>
+            </div>
+            <div class="component-name">Contact Form</div>
+            <div class="component-desc">Input fields with submit button</div>
+          </div>
+
+          <div class="component-card" data-type="stats" onclick="addComponent('stats')">
+            <div class="component-preview">
+              <div style="display: flex; gap: 12px; height: 100%; align-items: center;">
+                <div style="flex: 1; height: 40px; background: rgba(0, 243, 255, 0.2); border-radius: 8px;"></div>
+                <div style="flex: 1; height: 40px; background: rgba(168, 85, 247, 0.2); border-radius: 8px;"></div>
+              </div>
+            </div>
+            <div class="component-name">Stats Grid</div>
+            <div class="component-desc">Metrics and statistics display</div>
+          </div>
+
+          <div class="component-card" data-type="nav" onclick="addComponent('nav')">
+            <div class="component-preview">
+              <div style="display: flex; justify-content: space-between; align-items: center; height: 100%; padding: 0 12px;">
+                <div style="width: 60px; height: 12px; background: var(--text-primary); border-radius: 4px;"></div>
+                <div style="display: flex; gap: 8px;">
+                  <div style="width: 20px; height: 20px; background: var(--nexus-elevated); border-radius: 4px;"></div>
+                  <div style="width: 20px; height: 20px; background: var(--nexus-elevated); border-radius: 4px;"></div>
+                  <div style="width: 20px; height: 20px; background: var(--nexus-elevated); border-radius: 4px;"></div>
+                </div>
+              </div>
+            </div>
+            <div class="component-name">Navigation Bar</div>
+            <div class="component-desc">Top navigation with logo and menu</div>
+          </div>
+
+          <div class="component-card" data-type="footer" onclick="addComponent('footer')">
+            <div class="component-preview">
+              <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+                <div style="width: 80%; height: 8px; background: var(--text-muted); border-radius: 4px;"></div>
+              </div>
+            </div>
+            <div class="component-name">Footer</div>
+            <div class="component-desc">Page footer with links</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Assistant Toggle Button -->
+  <div onclick="toggleAI()" style="position: fixed; bottom: 24px; right: 24px; width: 56px; height: 56px; background: var(--gradient-cyber); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: var(--glow-cyan); z-index: 999;">
+    <span style="font-size: 24px;">✨</span>
+  </div>
+
+  <script>
+    // NEXUS Studio Core
+    class NexusStudio {
+      constructor() {
+        this.components = [];
+        this.selectedComponent = null;
+        this.isDragging = false;
+        this.dragOffset = { x: 0, y: 0 };
+        this.isResizing = false;
+
+        this.init();
+      }
+
+      init() {
+        this.setupEventListeners();
+        this.setupDragAndDrop();
+        this.setupComponentLibrary();
+
+        console.log('🚀 NEXUS Studio - Ready');
+        this.showNotification('Welcome to NEXUS Studio');
+      }
+
+      setupEventListeners() {
+        // Canvas drop events
+        const canvas = document.getElementById('canvas');
+        canvas.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'copy';
+        });
+
+        canvas.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const type = e.dataTransfer.getData('component-type');
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left - 100;
+          const y = e.clientY - rect.top - 50;
+
+          this.addComponent(type, x, y);
+        });
+
+        // Component click events
+        document.addEventListener('click', (e) => {
+          const component = e.target.closest('.dropped-component');
+          if (component) {
+            this.selectComponent(component);
+          } else {
+            this.selectedComponent = null;
+            this.updatePropertiesPanel();
+          }
+        });
+      }
+
+      setupDragAndDrop() {
+        document.querySelectorAll('.dropped-component').forEach(component => {
+          const handle = component.querySelector('.component-handle');
+
+          handle.addEventListener('mousedown', (e) => {
+            e.stopPropagation();
+            this.startDragging(component, e);
+          });
+        });
+      }
+
+      setupComponentLibrary() {
+        // Make component cards draggable
+        document.querySelectorAll('.component-card').forEach(card => {
+          card.setAttribute('draggable', 'true');
+
+          card.addEventListener('dragstart', (e) => {
+            e.dataTransfer.setData('component-type', card.dataset.type);
+            e.dataTransfer.effectAllowed = 'copy';
+          });
+        });
+      }
+
+      addComponent(type, x, y) {
+        const id = `component-${Date.now()}`;
+
+        const templates = {
+          hero: {
+            width: 800,
+            height: 400,
+            html: `
+              <div class="component-handle">
+                <div class="component-handle-title">Hero Section</div>
+                <div class="component-handle-actions">
+                  <div class="handle-btn">⋮</div>
+                  <div class="handle-btn">×</div>
+                </div>
+              </div>
+              <div class="component-content">
+                <h2 style="font-size: 48px; margin-bottom: 16px; color: var(--text-primary);">Welcome to Your App</h2>
+                <p style="font-size: 18px; color: var(--text-secondary); margin-bottom: 32px;">Build amazing applications without writing code.</p>
+                <button style="background: var(--nexus-cyan); color: var(--nexus-void); border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; cursor: pointer;">
+                  Get Started
+                </button>
+              </div>
+            `
+          },
+          card: {
+            width: 350,
+            height: 300,
+            html: `
+              <div class="component-handle">
+                <div class="component-handle-title">Content Card</div>
+                <div class="component-handle-actions">
+                  <div class="handle-btn">⋮</div>
+                  <div class="handle-btn">×</div>
+                </div>
+              </div>
+              <div class="component-content">
+                <div style="width: 100%; height: 160px; background: var(--nexus-elevated); border-radius: 12px; margin-bottom: 16px;"></div>
+                <h3 style="font-size: 20px; color: var(--text-primary); margin-bottom: 8px;">Card Title</h3>
+                <p style="color: var(--text-secondary); font-size: 14px;">This is a content card description that can be customized.</p>
+              </div>
+            `
+          },
+          form: {
+            width: 400,
+            height: 300,
+            html: `
+              <div class="component-handle">
+                <div class="component-handle-title">Contact Form</div>
+                <div class="component-handle-actions">
+                  <div class="handle-btn">⋮</div>
+                  <div class="handle-btn">×</div>
+                </div>
+              </div>
+              <div class="component-content">
+                <input type="text" placeholder="Name" style="width: 100%; padding: 12px; background: var(--nexus-surface); border: 1px solid var(--nexus-elevated); border-radius: 8px; color: var(--text-primary); margin-bottom: 12px;">
+                <input type="email" placeholder="Email" style="width: 100%; padding: 12px; background: var(--nexus-surface); border: 1px solid var(--nexus-elevated); border-radius: 8px; color: var(--text-primary); margin-bottom: 12px;">
+                <textarea placeholder="Message" rows="3" style="width: 100%; padding: 12px; background: var(--nexus-surface); border: 1px solid var(--nexus-elevated); border-radius: 8px; color: var(--text-primary); margin-bottom: 16px;"></textarea>
+                <button style="background: var(--nexus-purple); color: white; border: none; padding: 12px 32px; border-radius: 8px; font-weight: 600; cursor: pointer;">Submit</button>
+              </div>
+            `
+          }
+        };
+
+        const template = templates[type] || templates.hero;
+
+        const component = document.createElement('div');
+        component.className = 'dropped-component';
+        component.style.cssText = `top: ${y}px; left: ${x}px; width: ${template.width}px; height: ${template.height}px;`;
+        component.innerHTML = template.html;
+
+        document.getElementById('canvas').appendChild(component);
+
+        // Add drag functionality to new component
+        const handle = component.querySelector('.component-handle');
+        handle.addEventListener('mousedown', (e) => {
+          e.stopPropagation();
+          this.startDragging(component, e);
+        });
+
+        // Add delete functionality
+        const deleteBtn = component.querySelector('.handle-btn:last-child');
+        deleteBtn.addEventListener('click', () => {
+          component.remove();
+        });
+
+        this.components.push({ id, type, x, y });
+        this.selectComponent(component);
+        this.showNotification(`Added ${type} component`);
+      }
+
+      startDragging(component, e) {
+        this.isDragging = true;
+        this.selectedComponent = component;
+
+        const rect = component.getBoundingClientRect();
+        this.dragOffset = {
+          x: e.clientX - rect.left,
+          y: e.clientY - rect.top
+        };
+
+        const handleMouseMove = (e) => {
+          if (!this.isDragging) return;
+
+          const canvas = document.getElementById('canvas');
+          const canvasRect = canvas.getBoundingClientRect();
+
+          const x = e.clientX - canvasRect.left - this.dragOffset.x;
+          const y = e.clientY - canvasRect.top - this.dragOffset.y;
+
+          component.style.left = `${Math.max(0, x)}px`;
+          component.style.top = `${Math.max(0, y)}px`;
+        };
+
+        const handleMouseUp = () => {
+          this.isDragging = false;
+          document.removeEventListener('mousemove', handleMouseMove);
+          document.removeEventListener('mouseup', handleMouseUp);
+        };
+
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+      }
+
+      selectComponent(component) {
+        // Remove selection from all components
+        document.querySelectorAll('.dropped-component').forEach(comp => {
+          comp.style.borderColor = 'rgba(0, 243, 255, 0.3)';
+        });
+
+        // Highlight selected component
+        component.style.borderColor = 'var(--nexus-cyan)';
+        component.style.boxShadow = 'var(--glow-cyan)';
+        this.selectedComponent = component;
+
+        this.updatePropertiesPanel();
+      }
+
+      updatePropertiesPanel() {
+        if (!this.selectedComponent) return;
+
+        // Update property inputs based on selected component
+        const width = parseInt(this.selectedComponent.style.width);
+        const height = parseInt(this.selectedComponent.style.height);
+
+        // This would update the actual properties panel inputs
+        console.log('Selected component properties:', { width, height });
+      }
+
+      showNotification(message) {
+        // Create toast notification
+        const toast = document.createElement('div');
+        toast.style.cssText = `
+          position: fixed;
+          top: 24px;
+          right: 24px;
+          background: var(--nexus-deep);
+          border: 1px solid var(--nexus-cyan);
+          color: var(--nexus-cyan);
+          padding: 12px 20px;
+          border-radius: 8px;
+          z-index: 10000;
+          animation: fadeIn 0.3s ease;
+        `;
+        toast.textContent = message;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+          toast.style.animation = 'fadeOut 0.3s ease';
+          setTimeout(() => toast.remove(), 300);
+        }, 3000);
+      }
+    }
+
+    // AI Assistant
+    function toggleAI() {
+      const ai = document.getElementById('ai-assistant');
+      ai.classList.toggle('open');
+    }
+
+    function sendAIMessage() {
+      const input = document.querySelector('.ai-input-field');
+      const message = input.value.trim();
+
+      if (!message) return;
+
+      const messages = document.getElementById('ai-messages');
+
+      // Add user message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'ai-message user';
+      userMsg.textContent = message;
+      messages.appendChild(userMsg);
+
+      // Clear input
+      input.value = '';
+
+      // Show typing indicator
+      const typing = document.createElement('div');
+      typing.className = 'ai-message assistant';
+      typing.innerHTML = 'Thinking...';
+      messages.appendChild(typing);
+      messages.scrollTop = messages.scrollHeight;
+
+      // Simulate AI response
+      setTimeout(() => {
+        typing.remove();
+
+        const responses = [
+          "I'll add a contact form to your page. Where would you like it?",
+          "Changing the theme to dark mode. Here's how it looks.",
+          "Added a pricing section with three plans. You can customize the prices in properties.",
+          "Created a user dashboard with stats cards and a recent activity table.",
+          "Implemented a booking system with calendar and time slot selection."
+        ];
+
+        const response = document.createElement('div');
+        response.className = 'ai-message assistant';
+        response.textContent = responses[Math.floor(Math.random() * responses.length)];
+        messages.appendChild(response);
+        messages.scrollTop = messages.scrollHeight;
+      }, 1500);
+    }
+
+    // Component Library Modal
+    function showComponentLibrary() {
+      document.getElementById('component-library').style.display = 'block';
+    }
+
+    function hideComponentLibrary() {
+      document.getElementById('component-library').style.display = 'none';
+    }
+
+    // Initialize
+    const studio = new NexusStudio();
+    window.studio = studio;
+  </script>
+</body>
+</html>
