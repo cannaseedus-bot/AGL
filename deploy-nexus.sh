@@ -49,6 +49,11 @@ cat > manifest.json << 'MANIFEST'
 }
 MANIFEST
 
+cat > sw.js << 'SW'
+// Service worker code from above
+SW
+
+cat > README.md << 'DOCS'
 cat > sw.js << 'SERVICE_WORKER'
 // Service worker code from above
 SERVICE_WORKER
@@ -98,6 +103,9 @@ git push -u origin main
 - ✅ Local storage (no data leaves browser)
 - ✅ Installable PWA
 - ✅ Responsive design
+DOCS
+
+cat > package.json << 'PKG'
 
 ## Prefer classic terminals?
 You can also run Nexus workflows from classic terminals like Git Bash or PowerShell by working directly in a folder and using the CLI-only flow (no Studio UI required).
@@ -120,6 +128,10 @@ cat > package.json << 'PACKAGE'
     "serve": "^14.0.0"
   }
 }
+PKG
+
+echo "✅ Nexus Studio PWA created in: nexus-deployment/"
+
 PACKAGE
 
 echo "✅ Nexus Studio PWA created in: nexus-deployment/"
@@ -130,6 +142,7 @@ echo "  - manifest.json       (PWA manifest)"
 echo "  - sw.js               (Service worker)"
 echo "  - README.md           (Deployment instructions)"
 echo "  - package.json        (For Vercel/Netlify)"
+
 echo ""
 echo "🚀 To deploy:"
 echo "  1. cd nexus-deployment"
@@ -137,6 +150,7 @@ echo "  2. Deploy to your preferred hosting:"
 echo "     - Vercel:    vercel"
 echo "     - Netlify:   Drag folder to netlify.com"
 echo "     - GitHub:    Push to repo, enable Pages"
+
 echo ""
 echo "🌐 Users can then visit: YOUR_URL.com"
 echo "📱 It will prompt to install as PWA"

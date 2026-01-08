@@ -9,6 +9,8 @@ const ASSETS_TO_CACHE = [
   '/styles.css'
 ];
 
+self.addEventListener('install', (event) => {
+  event.waitUntil(
 const syncPendingAPICalls = async () => {
   return Promise.resolve();
 };
@@ -25,6 +27,14 @@ self.addEventListener('install', (event) => {
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
+    caches.keys().then((cacheNames) => Promise.all(
+      cacheNames.map((cacheName) => {
+        if (cacheName !== CACHE_NAME) {
+          return caches.delete(cacheName);
+        }
+        return undefined;
+      })
+    )).then(() => self.clients.claim())
     caches
       .keys()
       .then((cacheNames) => {
