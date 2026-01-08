@@ -1082,6 +1082,54 @@ Size: 2.4 MB
 Time: 1.2s`;
             }
 
+            async cliDeploy(args) {
+                const target = args[0] || 'vercel';
+                this.showToast(`Deploying to ${target}...`);
+
+                await new Promise(resolve => setTimeout(resolve, 1200));
+
+                return `🚀 Deployed to ${target}!
+URL: https://nexus-studio-${target}.app
+Status: live`;
+            }
+
+            async cliAPI(args) {
+                const action = args[0] || 'list';
+
+                switch (action) {
+                    case 'list':
+                        return 'Available APIs: openai, anthropic, deepseek';
+                    case 'register':
+                        return 'API registration queued. Use: api list';
+                    case 'call':
+                        return 'API call queued. Provide payload in next command.';
+                    default:
+                        return `Unknown api action: ${action}`;
+                }
+            }
+
+            async cliFS(args) {
+                const action = args[0] || 'ls';
+
+                switch (action) {
+                    case 'ls':
+                        return 'workspace/  dist/  assets/';
+                    case 'cat':
+                        return 'Usage: fs cat <path>';
+                    case 'cp':
+                        return 'Usage: fs cp <src> <dest>';
+                    case 'mv':
+                        return 'Usage: fs mv <src> <dest>';
+                    default:
+                        return `Unknown fs action: ${action}`;
+                }
+            }
+
+            async cliSVG(args) {
+                const component = args[0] || 'logo';
+                return `Generated ${component} SVG and stored in ./assets/${component}.svg`;
+            }
+
             async cliAI(args) {
                 const prompt = args.join(' ');
                 if (!prompt) return 'Please provide a prompt';
@@ -1097,6 +1145,21 @@ ${prompt} would be implemented with:
 - Node.js backend for logic
 - SCXQ2 glyph compression for assets
 - Local IndexedDB for storage`;
+            }
+
+            async cliDB(args) {
+                const action = args[0] || 'status';
+
+                switch (action) {
+                    case 'status':
+                        return 'DB status: connected (IndexedDB)';
+                    case 'list':
+                        return 'Tables: projects, components, apiKeys';
+                    case 'reset':
+                        return 'DB reset queued. Refresh to reinitialize.';
+                    default:
+                        return `Unknown db action: ${action}`;
+                }
             }
 
             toggleTheme() {
@@ -1281,6 +1344,7 @@ ${prompt} would be implemented with:
                     <h2 style="margin-bottom: 20px; color: var(--nexus-cyan);">${title}</h2>
                     ${content}
                     <button onclick="this.closest('[style*=\"position: fixed\"]').remove()" style="position: absolute; top: 20px; right: 20px; background: transparent; color: var(--nexus-text-secondary); border: none; font-size: 24px; cursor: pointer;">×</button>
+                    <button onclick="this.closest('[style*=&quot;position: fixed&quot;]').remove()" style="position: absolute; top: 20px; right: 20px; background: transparent; color: var(--nexus-text-secondary); border: none; font-size: 24px; cursor: pointer;">×</button>
                 `;
 
                 overlay.appendChild(modal);
