@@ -35,6 +35,10 @@ AI handles the typing, compiling, and building.
 - **Plugin Architecture** — define custom glyphs and domains  
 - **Browser + Node Support** — universal execution  
 
+## 🖥️ Classic CLI Option
+
+Prefer a raw terminal flow? You can skip the Studio interface and build directly from a folder using your classic CLI (Git Bash, PowerShell, or any terminal). This keeps everything local and file-based while still using AGL tooling.
+
 
 
 ## 📦 Installation
