@@ -1,4 +1,76 @@
 # AGL
+📘 README Header (Paste‑Ready)
+(This is the top of your README.md  — clean, branded, and production‑ready.)
+
+md
+<div align="center">
+
+<img src="./branding/logo-primary.svg" width="120" alt="AGL Logo" />
+
+# **AGL — Atomic Glyph Language**
+### *A symbolic language where one glyph can be an entire app, and AI does the typing.*
+
+**Symbolic Execution • AI‑Native • DOM/API/Math Unified Runtime**
+
+[![npm version](https://img.shields.io/npm/v/agl-language.svg)](https://npmjs.com/package/agl-language)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+</div>
+
+---
+
+AGL is a **symbolic execution language** designed for AI, not humans.
+
+Glyphs represent **semantic atoms** — from mathematical operators to DOM nodes, API calls, workflows, and even full applications.  
+AI generates the glyph chains. AGL executes them.
+
+Humans interact through **visual editors**, **drag‑and‑drop flows**, and **natural language**.  
+AI handles the typing, compiling, and building.
+
+---
+
+## 🚀 Features
+
+- **AI‑Native Language** — glyphs are for machines, not humans  
+- **Unified Runtime** — math, DOM, API, and control glyphs in one system  
+- **Phase‑Based Execution** — traceable symbolic computation  
+- **Visual Programming** — drag‑and‑drop WYSIWYG editor  
+- **CLI + REPL** — for debugging and automation  
+- **Plugin Architecture** — define custom glyphs and domains  
+- **Browser + Node Support** — universal execution  
+
+
+
+## 📦 Installation
+
+```bash
+npm install agl-language
+🧠 Example
+js
+import { AGL } from 'agl-language';
+
+// One glyph, full operation
+const result = await AGL.execute('∫(x², 0, 10)');
+console.log(result);
+```
+
+📚 Documentation
+Brand Kit: /branding/palette.md
+
+Examples: /examples
+
+API Reference: /docs/api
+
+Visual Editor: /visual
+
+🧩 Philosophy
+AGL treats software like mathematics:
+compressed symbols, infinite meaning, AI‑driven execution.
+
+One glyph can be an entire app.
+AI does the typing.
+AGL does the execution.
+
 Short Description (for npm listing)
 AGL — Atomic Glyph Language. A symbolic execution language where one glyph can be an entire app, and AI does the typing. Unified math, DOM, API, and control glyphs compiled to JavaScript.
 
