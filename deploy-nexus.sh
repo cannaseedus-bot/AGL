@@ -10,6 +10,9 @@ mkdir -p nexus-deployment
 cd nexus-deployment
 
 # Create HTML file
+mkdir -p nexus-deployment
+cd nexus-deployment
+
 cat > index.html << 'HTML'
 <!DOCTYPE html>
 <html lang="en">
@@ -29,6 +32,9 @@ cat > index.html << 'HTML'
     <!-- The complete PWA HTML from above goes here -->
     <script>
         // The complete JavaScript from above goes here
+    <script>
+        // The complete JavaScript from above goes here
+        // The complete JavaScript from the main PWA goes here.
     </script>
 </body>
 </html>
@@ -55,11 +61,21 @@ cat > manifest.json << 'MANIFEST'
 MANIFEST
 
 # Create service worker
+cat > sw.js << 'SW'
+// Service worker code from above
+SW
+
+cat > README.md << 'DOCS'
 cat > sw.js << 'SERVICE_WORKER'
 // Service worker code from above
 SERVICE_WORKER
 
 # Create deploy instructions
+cat > README.md << 'DOCS'
+cat > sw.js << 'SW'
+// Service worker code from the main PWA goes here.
+SW
+
 cat > README.md << 'README'
 # Nexus Studio PWA - One-Click Deployment
 
@@ -103,6 +119,18 @@ git push -u origin main
 README
 
 # Create package.json for Vercel/Netlify
+DOCS
+
+cat > package.json << 'PKG'
+
+## Prefer classic terminals?
+You can also run Nexus workflows from classic terminals like Git Bash or PowerShell by working directly in a folder and using the CLI-only flow (no Studio UI required).
+DOCS
+## Classic CLI Option
+If you prefer a raw, classic terminal flow (Git Bash/PowerShell), you can skip the Studio UI
+and build directly from a local folder using the CLI tooling.
+README
+
 cat > package.json << 'PACKAGE'
 {
   "name": "nexus-studio-pwa",
@@ -116,6 +144,10 @@ cat > package.json << 'PACKAGE'
     "serve": "^14.0.0"
   }
 }
+PKG
+
+echo "✅ Nexus Studio PWA created in: nexus-deployment/"
+
 PACKAGE
 
 echo "✅ Nexus Studio PWA created in: nexus-deployment/"
@@ -126,6 +158,7 @@ echo "  - manifest.json       (PWA manifest)"
 echo "  - sw.js               (Service worker)"
 echo "  - README.md           (Deployment instructions)"
 echo "  - package.json        (For Vercel/Netlify)"
+
 echo ""
 echo "🚀 To deploy:"
 echo "  1. cd nexus-deployment"
@@ -133,6 +166,7 @@ echo "  2. Deploy to your preferred hosting:"
 echo "     - Vercel:    vercel"
 echo "     - Netlify:   Drag folder to netlify.com"
 echo "     - GitHub:    Push to repo, enable Pages"
+
 echo ""
 echo "🌐 Users can then visit: YOUR_URL.com"
 echo "📱 It will prompt to install as PWA"
