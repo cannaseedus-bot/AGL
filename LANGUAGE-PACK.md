@@ -195,3 +195,131 @@ I can generate:
 - a **GitHub project structure with branding baked in**  
 
 Just tell me where you want to take AGL next.
+
+🎨 branding/palette.md
+(Paste directly into /branding/palette.md in your repo)
+
+md
+# AGL Branding & Color Palette
+
+AGL (Atomic Glyph Language) is a symbolic execution language designed for AI, not humans.  
+Its visual identity reflects mathematical clarity, minimalism, and the idea that entire systems can compress into a single glyph.
+
+---
+
+## 1. Brand Essence
+
+**Tagline:**  
+AGL — a symbolic language where one glyph can be an entire app, and AI does the typing.
+
+**Core Principles:**  
+- Mathematical  
+- Minimal  
+- Symbolic  
+- AI‑native  
+- Ego‑free  
+- High‑contrast  
+- Modular  
+
+---
+
+## 2. Logo System
+
+### Primary Mark  
+A geometric tri‑glyph composed of:
+- **Dot** — atomic unit  
+- **Curve** — flow / integral  
+- **Bracket** — phase / shell  
+
+This mark represents AGL’s core idea: symbolic atoms that encode entire systems.
+
+### Wordmark  
+`AGL` in uppercase  
+Typeface: **Space Grotesk** (primary), **JetBrains Mono** (code contexts)
+
+### Logo Lockup  
+[ TRI‑GLYPH MARK ]   AGL
+Atomic Glyph Language
+
+Code
+
+- Subtitle at 60% of wordmark size  
+- Mark height = wordmark height  
+- 24px padding around the lockup  
+
+---
+
+## 3. Color Palette
+
+### Primary Colors
+
+| Name            | Hex       | Usage                                   |
+|-----------------|-----------|------------------------------------------|
+| Electric Cyan   | `#35F0FF` | Glyphs, highlights, active states        |
+| Deep Space Black| `#050608` | Background, terminal, void               |
+
+### Secondary Colors
+
+| Name          | Hex       | Usage                                   |
+|---------------|-----------|------------------------------------------|
+| Soft Violet   | `#A66BFF` | Phases, meta layers                      |
+| Signal Amber  | `#FFC857` | Warnings, runtime activity               |
+| Slate Graphite| `#2B2F3A` | Panels, cards, editor chrome             |
+
+### Neutral Colors
+
+| Name       | Hex       | Usage                |
+|------------|-----------|----------------------|
+| Pure White | `#FFFFFF` | Text on dark surfaces|
+| Mist Grey  | `#C7CEDB` | Borders, dividers    |
+
+---
+
+## 4. Iconography
+
+AGL uses a modular icon set for documentation, UI, and npm.
+
+### Core Icons
+
+- **AGL Core:** tri‑glyph mark  
+- **Math Engine:** ∫ inside a circle  
+- **DOM Engine:** layered rectangles  
+- **API Engine:** three‑node graph  
+- **CLI/Shell:** `>` prompt in a rounded square  
+- **AI Builder:** spark/starburst over a glyph  
+
+Icons should be:
+- 1‑stroke weight  
+- geometric  
+- monochrome or cyan on dark backgrounds  
+
+---
+
+## 5. Typography
+
+### Primary Typeface  
+**Space Grotesk** — geometric, modern, math‑friendly
+
+### Secondary Typeface  
+**JetBrains Mono** — code blocks, CLI, examples
+
+### Fallbacks  
+IBM Plex Sans, Inter, Fira Code
+
+---
+
+## 6. Usage Guidelines
+
+- Use **Electric Cyan** sparingly for emphasis.  
+- Avoid gradients; AGL is symbolic, not ornamental.  
+- Keep layouts minimal with generous spacing.  
+- Never rotate or distort the tri‑glyph mark.  
+- Maintain high contrast for accessibility and clarity.  
+
+---
+
+## 7. Brand Summary
+
+AGL’s visual identity is built on the same principles as the language itself:  
+**symbolic compression, mathematical clarity, and AI‑native execution.**
+
