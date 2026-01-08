@@ -1,8 +1,4 @@
 # AGL
-📘 README Header (Paste‑Ready)
-(This is the top of your README.md  — clean, branded, and production‑ready.)
-
-md
 <div align="center">
 
 <img src="./branding/logo-primary.svg" width="120" alt="AGL Logo" />
