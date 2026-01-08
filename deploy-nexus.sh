@@ -23,6 +23,7 @@ cat > index.html << 'HTML'
 <body>
     <div class="loading">Loading Nexus Studio...</div>
     <script>
+        // The complete JavaScript from above goes here
         // The complete JavaScript from the main PWA goes here.
     </script>
 </body>
@@ -48,6 +49,11 @@ cat > manifest.json << 'MANIFEST'
 }
 MANIFEST
 
+cat > sw.js << 'SERVICE_WORKER'
+// Service worker code from above
+SERVICE_WORKER
+
+cat > README.md << 'DOCS'
 cat > sw.js << 'SW'
 // Service worker code from the main PWA goes here.
 SW
@@ -93,6 +99,9 @@ git push -u origin main
 - ✅ Installable PWA
 - ✅ Responsive design
 
+## Prefer classic terminals?
+You can also run Nexus workflows from classic terminals like Git Bash or PowerShell by working directly in a folder and using the CLI-only flow (no Studio UI required).
+DOCS
 ## Classic CLI Option
 If you prefer a raw, classic terminal flow (Git Bash/PowerShell), you can skip the Studio UI
 and build directly from a local folder using the CLI tooling.
