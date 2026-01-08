@@ -24,6 +24,7 @@ cat > index.html << 'HTML'
     <div class="loading">Loading Nexus Studio...</div>
     <script>
         // The complete JavaScript from above goes here
+        // The complete JavaScript from the main PWA goes here.
     </script>
 </body>
 </html>
@@ -53,6 +54,11 @@ cat > sw.js << 'SERVICE_WORKER'
 SERVICE_WORKER
 
 cat > README.md << 'DOCS'
+cat > sw.js << 'SW'
+// Service worker code from the main PWA goes here.
+SW
+
+cat > README.md << 'README'
 # Nexus Studio PWA - One-Click Deployment
 
 ## Deploy to:
@@ -96,6 +102,10 @@ git push -u origin main
 ## Prefer classic terminals?
 You can also run Nexus workflows from classic terminals like Git Bash or PowerShell by working directly in a folder and using the CLI-only flow (no Studio UI required).
 DOCS
+## Classic CLI Option
+If you prefer a raw, classic terminal flow (Git Bash/PowerShell), you can skip the Studio UI
+and build directly from a local folder using the CLI tooling.
+README
 
 cat > package.json << 'PACKAGE'
 {
