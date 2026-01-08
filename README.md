@@ -89,6 +89,9 @@ Features include:
 • Plugin system for custom glyphs
 • Browser + Node support
 
+Classic CLI option
+AGL workflows can also be run directly from classic terminals like Git Bash or PowerShell, working inside a local folder without the Studio UI when you prefer a traditional CLI-only flow.
+
 AGL is symbolic code for AI, not humans.
 ---
 
