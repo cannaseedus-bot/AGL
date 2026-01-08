@@ -1343,6 +1343,7 @@ ${prompt} would be implemented with:
                 modal.innerHTML = `
                     <h2 style="margin-bottom: 20px; color: var(--nexus-cyan);">${title}</h2>
                     ${content}
+                    <button onclick="this.closest('[style*=\"position: fixed\"]').remove()" style="position: absolute; top: 20px; right: 20px; background: transparent; color: var(--nexus-text-secondary); border: none; font-size: 24px; cursor: pointer;">×</button>
                     <button onclick="this.closest('[style*=&quot;position: fixed&quot;]').remove()" style="position: absolute; top: 20px; right: 20px; background: transparent; color: var(--nexus-text-secondary); border: none; font-size: 24px; cursor: pointer;">×</button>
                 `;
 
