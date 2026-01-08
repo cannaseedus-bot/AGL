@@ -45,8 +45,10 @@ AI handles the typing, compiling, and building.
 
 ```bash
 npm install agl-language
-🧠 Example
-js
+```
+# 🧠 Example
+
+```js
 import { AGL } from 'agl-language';
 
 // One glyph, full operation
