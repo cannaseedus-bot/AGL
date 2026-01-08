@@ -1,9 +1,15 @@
 #!/bin/bash
+# deploy-nexus.sh
 
 set -euo pipefail
 
 echo "🚀 Deploying Nexus Studio PWA..."
 
+# Create deployment directory
+mkdir -p nexus-deployment
+cd nexus-deployment
+
+# Create HTML file
 mkdir -p nexus-deployment
 cd nexus-deployment
 
@@ -16,12 +22,16 @@ cat > index.html << 'HTML'
     <title>Nexus Studio</title>
     <link rel="manifest" href="/manifest.json">
     <style>
+        /* Include all the CSS from the main PWA file */
         body { margin: 0; padding: 0; background: #0a0a0f; color: white; }
         .loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; }
     </style>
 </head>
 <body>
     <div class="loading">Loading Nexus Studio...</div>
+    <!-- The complete PWA HTML from above goes here -->
+    <script>
+        // The complete JavaScript from above goes here
     <script>
         // The complete JavaScript from above goes here
         // The complete JavaScript from the main PWA goes here.
@@ -30,6 +40,7 @@ cat > index.html << 'HTML'
 </html>
 HTML
 
+# Create manifest
 cat > manifest.json << 'MANIFEST'
 {
   "name": "Nexus Studio",
@@ -49,6 +60,7 @@ cat > manifest.json << 'MANIFEST'
 }
 MANIFEST
 
+# Create service worker
 cat > sw.js << 'SW'
 // Service worker code from above
 SW
@@ -58,6 +70,7 @@ cat > sw.js << 'SERVICE_WORKER'
 // Service worker code from above
 SERVICE_WORKER
 
+# Create deploy instructions
 cat > README.md << 'DOCS'
 cat > sw.js << 'SW'
 // Service worker code from the main PWA goes here.
@@ -103,6 +116,9 @@ git push -u origin main
 - ✅ Local storage (no data leaves browser)
 - ✅ Installable PWA
 - ✅ Responsive design
+README
+
+# Create package.json for Vercel/Netlify
 DOCS
 
 cat > package.json << 'PKG'

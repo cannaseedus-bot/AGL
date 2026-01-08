@@ -35,6 +35,24 @@ AI handles the typing, compiling, and building.
 - **Plugin Architecture** — define custom glyphs and domains  
 - **Browser + Node Support** — universal execution  
 
+## 📱 Nexus Studio PWA (Manifest + Service Worker)
+
+The PWA assets for **Nexus Studio** live at the repo root:
+
+- `manifest.json` — install metadata, shortcuts, and share target
+- `sw.js` — offline caching, background sync, and push handling
+
+You can deploy a static bundle with the one‑click script:
+
+```bash
+./deploy-nexus.sh
+```
+
+This produces a `nexus-deployment/` folder ready for Vercel, Netlify, or GitHub Pages.
+
+## 🧰 Classic CLI Mode (No Studio UI)
+
+Prefer a raw terminal workflow? You can skip the Studio interface entirely and build directly from a local folder using the classic CLI (Git Bash/PowerShell) instead of the app builder UI.
 ## 🖥️ Classic CLI Option
 
 Prefer a raw terminal flow? You can skip the Studio interface and build directly from a folder using your classic CLI (Git Bash, PowerShell, or any terminal). This keeps everything local and file-based while still using AGL tooling.

@@ -9,6 +9,11 @@ const ASSETS_TO_CACHE = [
   '/styles.css'
 ];
 
+// Install event
+self.addEventListener('install', (event) => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
 self.addEventListener('install', (event) => {
   event.waitUntil(
 const syncPendingAPICalls = async () => {
@@ -25,6 +30,24 @@ self.addEventListener('install', (event) => {
   );
 });
 
+// Activate event
+self.addEventListener('activate', (event) => {
+  event.waitUntil(
+    caches.keys().then(cacheNames => {
+      return Promise.all(
+        cacheNames.map(cacheName => {
+          if (cacheName !== CACHE_NAME) {
+            return caches.delete(cacheName);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+// Fetch event (Network-first, cache fallback)
+self.addEventListener('fetch', (event) => {
+  // Skip cross-origin requests
 self.addEventListener('activate', (event) => {
   event.waitUntil(
     caches.keys().then((cacheNames) => Promise.all(
@@ -67,6 +90,12 @@ self.addEventListener('fetch', (event) => {
 
   event.respondWith(
     fetch(event.request)
+      .then(response => {
+        // Cache successful responses
+        if (response.status === 200) {
+          const responseClone = response.clone();
+          caches.open(CACHE_NAME)
+            .then(cache => cache.put(event.request, responseClone));
       .then((response) => {
         if (response.status === 200) {
           const responseClone = response.clone();
@@ -78,6 +107,22 @@ self.addEventListener('fetch', (event) => {
         return response;
       })
       .catch(() => {
+        // Fallback to cache
+        return caches.match(event.request)
+          .then(cachedResponse => {
+            if (cachedResponse) {
+              return cachedResponse;
+            }
+            // Fallback for HTML requests
+            if (event.request.headers.get('accept').includes('text/html')) {
+              return caches.match('/index.html');
+            }
+          });
+      })
+  );
+});
+
+// Background sync for offline data
         return caches.match(event.request).then((cachedResponse) => {
           if (cachedResponse) {
             return cachedResponse;
@@ -107,6 +152,10 @@ self.addEventListener('sync', (event) => {
     event.waitUntil(syncPendingAPICalls());
   }
 });
+
+// Push notifications
+self.addEventListener('push', (event) => {
+  const data = event.data.json();
 
 self.addEventListener('push', (event) => {
   if (!event.data) {
@@ -152,6 +201,8 @@ self.addEventListener('notificationclick', (event) => {
 
   if (event.action === 'open') {
     event.waitUntil(
+      clients.matchAll({type: 'window'})
+        .then(clientList => {
       clients.matchAll({ type: 'window' }).then((clientList) => {
         if (clientList.length > 0) {
           return clientList[0].focus();
