@@ -323,3 +323,163 @@ IBM Plex Sans, Inter, Fira Code
 AGL’s visual identity is built on the same principles as the language itself:  
 **symbolic compression, mathematical clarity, and AI‑native execution.**
 
+Here’s a tight, paste‑ready **SVG icon set** for AGL with a shared **neon gradient** you can reuse across all icons.
+
+Each icon is self‑contained, but you can also extract the `<defs>` block and centralize it.
+
+---
+
+### 🌈 Shared neon gradient (for reuse)
+
+```svg
+<defs>
+  <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" stop-color="#35F0FF"/>
+    <stop offset="50%" stop-color="#A66BFF"/>
+    <stop offset="100%" stop-color="#FFC857"/>
+  </linearGradient>
+</defs>
+```
+
+---
+
+### 1️⃣ Core AGL tri‑glyph logo (icon)
+
+```svg
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35F0FF"/>
+      <stop offset="50%" stop-color="#A66BFF"/>
+      <stop offset="100%" stop-color="#FFC857"/>
+    </linearGradient>
+  </defs>
+  <rect width="128" height="128" rx="24" fill="#050608"/>
+  <!-- Dot -->
+  <circle cx="64" cy="32" r="8" fill="url(#agl-neon)"/>
+  <!-- Curve -->
+  <path d="M40 60 C 52 40, 76 40, 88 60 C 100 80, 76 88, 64 96" 
+        fill="none" stroke="url(#agl-neon)" stroke-width="6" stroke-linecap="round"/>
+  <!-- Bracket -->
+  <path d="M44 48 L44 92 L72 92" 
+        fill="none" stroke="url(#agl-neon)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+```
+
+---
+
+### 2️⃣ Math engine icon (∫)
+
+```svg
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35F0FF"/>
+      <stop offset="50%" stop-color="#A66BFF"/>
+      <stop offset="100%" stop-color="#FFC857"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="20" fill="#050608"/>
+  <circle cx="48" cy="48" r="30" fill="none" stroke="#2B2F3A" stroke-width="4"/>
+  <path d="M54 24 C 44 26, 42 34, 42 44 C 42 54, 40 62, 34 68 
+           M60 24 C 50 26, 48 34, 48 44 C 48 54, 46 62, 40 68"
+        fill="none" stroke="url(#agl-neon)" stroke-width="5" stroke-linecap="round"/>
+</svg>
+```
+
+---
+
+### 3️⃣ DOM / UI icon (layered rectangles)
+
+```svg
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35F0FF"/>
+      <stop offset="50%" stop-color="#A66BFF"/>
+      <stop offset="100%" stop-color="#FFC857"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="20" fill="#050608"/>
+  <rect x="20" y="26" width="52" height="34" rx="6" fill="none" stroke="#2B2F3A" stroke-width="3"/>
+  <rect x="28" y="34" width="52" height="34" rx="6" fill="none" stroke="url(#agl-neon)" stroke-width="4"/>
+  <rect x="36" y="42" width="52" height="34" rx="6" fill="none" stroke="#2B2F3A" stroke-width="3"/>
+</svg>
+```
+
+---
+
+### 4️⃣ API / network icon (node graph)
+
+```svg
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35F0FF"/>
+      <stop offset="50%" stop-color="#A66BFF"/>
+      <stop offset="100%" stop-color="#FFC857"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="20" fill="#050608"/>
+  <circle cx="30" cy="32" r="6" fill="url(#agl-neon)"/>
+  <circle cx="66" cy="28" r="6" fill="url(#agl-neon)"/>
+  <circle cx="72" cy="64" r="6" fill="url(#agl-neon)"/>
+  <circle cx="28" cy="68" r="6" fill="url(#agl-neon)"/>
+  <line x1="30" y1="32" x2="66" y2="28" stroke="#2B2F3A" stroke-width="3"/>
+  <line x1="66" y1="28" x2="72" y2="64" stroke="#2B2F3A" stroke-width="3"/>
+  <line x1="72" y1="64" x2="28" y2="68" stroke="#2B2F3A" stroke-width="3"/>
+  <line x1="28" y1="68" x2="30" y2="32" stroke="#2B2F3A" stroke-width="3"/>
+</svg>
+```
+
+---
+
+### 5️⃣ CLI / shell icon (`>` prompt)
+
+```svg
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35F0FF"/>
+      <stop offset="50%" stop-color="#A66BFF"/>
+      <stop offset="100%" stop-color="#FFC857"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="20" fill="#050608"/>
+  <rect x="16" y="22" width="64" height="52" rx="8" fill="#2B2F3A"/>
+  <path d="M28 40 L40 48 L28 56" fill="none" stroke="url(#agl-neon)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="44" y1="56" x2="60" y2="56" stroke="#C7CEDB" stroke-width="3" stroke-linecap="round"/>
+</svg>
+```
+
+---
+
+### 6️⃣ AI builder icon (spark over glyph)
+
+```svg
+<svg width="96" height="96" viewBox="0 0 96 96" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="agl-neon" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#35F0FF"/>
+      <stop offset="50%" stop-color="#A66BFF"/>
+      <stop offset="100%" stop-color="#FFC857"/>
+    </linearGradient>
+  </defs>
+  <rect width="96" height="96" rx="20" fill="#050608"/>
+  <!-- Base glyph-like curve -->
+  <path d="M30 64 C 38 48, 52 44, 66 48" 
+        fill="none" stroke="url(#agl-neon)" stroke-width="4" stroke-linecap="round"/>
+  <!-- Spark -->
+  <path d="M54 26 L56 32 L62 34 L56 36 L54 42 L52 36 L46 34 L52 32 Z"
+        fill="url(#agl-neon)"/>
+</svg>
+```
+
+---
+
+If you want, next step we can:
+
+- wrap these into a `/branding/icons` folder structure  
+- add a **dark neon gradient background** hero SVG for the README  
+- or build a **React icon component set** (`<AGLIconMath />`, `<AGLIconAPI />`, etc.).
+
