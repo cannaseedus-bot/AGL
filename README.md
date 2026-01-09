@@ -1,7 +1,7 @@
 # AGL
 <div align="center">
 
-<img src="./branding/logo-primary.svg" width="120" alt="AGL Logo" />
+<img src="logo-primary.png" width="120" alt="AGL Logo" />
 
 # **AGL — Atomic Glyph Language**
 ### *A symbolic language where one glyph can be an entire app, and AI does the typing.*
