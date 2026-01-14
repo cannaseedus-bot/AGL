@@ -21,6 +21,10 @@
     },
     "./cli": {
       "import": "./dist/cli/index.js"
+    },
+    "./vite": {
+      "import": "./dist/vite.js",
+      "types": "./dist/vite.d.ts"
     }
   },
   "bin": {
