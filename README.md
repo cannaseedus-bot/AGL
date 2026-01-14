@@ -25,6 +25,96 @@ AI handles the typing, compiling, and building.
 
 ---
 
+## 📁 agl-es Directory Structure (Alpha Release)
+
+This structure is optimized for:
+
+- ES module builds
+- clean separation of core, glyphs, runtime, and CLI
+- future editor integration
+- tree-shakable exports
+- npm-safe packaging
+
+```
+agl-es/
+├── src/
+│   ├── core/
+│   │   ├── parser.ts
+│   │   ├── tokenizer.ts
+│   │   ├── ast.ts
+│   │   └── index.ts
+│   │
+│   ├── runtime/
+│   │   ├── executor.ts
+│   │   ├── registry.ts
+│   │   ├── context.ts
+│   │   └── index.ts
+│   │
+│   ├── glyphs/
+│   │   ├── builtins/
+│   │   │   ├── math.ts
+│   │   │   ├── logic.ts
+│   │   │   ├── flow.ts
+│   │   │   └── io.ts
+│   │   ├── types.ts
+│   │   └── index.ts
+│   │
+│   ├── cli/
+│   │   ├── commands/
+│   │   │   ├── run.ts
+│   │   │   ├── compile.ts
+│   │   │   └── inspect.ts
+│   │   └── index.ts
+│   │
+│   └── index.ts
+│
+├── assets/
+│   ├── logo.svg
+│   ├── logo-dark.svg
+│   └── glyph-grid.png
+│
+├── examples/
+│   ├── hello-world.agl
+│   ├── math-flow.agl
+│   └── custom-glyphs.ts
+│
+├── dist/               # built output (ignored in git)
+│
+├── scripts/
+│   └── build-assets.js
+│
+├── package.json
+├── tsconfig.json
+├── README.md
+├── LICENSE
+└── CHANGELOG.md
+```
+
+---
+
+## 🏷️ agl-es README Header (Alpha)
+
+# **AGL-ES**
+### *Atomic Glyph Language — ES Module Runtime for Symbolic Execution*
+
+```
+One glyph = one operation.
+One flow = one program.
+AI does the typing. You shape the logic.
+```
+
+AGL-ES is a lightweight, composable runtime for **symbolic, glyph-based computation**.  
+It turns tiny atomic symbols into full executable workflows — a new way to build AI-native software where structure is visual, modular, and mathematically clean.
+
+- **ESM-first** (Node + Browser)
+- **Tree-shakable** runtime + glyph packs
+- **Composable symbolic flows**
+- **CLI for running, compiling, and inspecting glyph programs**
+- **Zero-overhead execution model**
+- **AI-friendly syntax designed for generation + editing**
+
+---
+
 ## 🚀 Features
 
 - **AI‑Native Language** — glyphs are for machines, not humans  
