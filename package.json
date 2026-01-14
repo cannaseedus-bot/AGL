@@ -21,6 +21,10 @@
     },
     "./cli": {
       "import": "./dist/cli/index.js"
+    },
+    "./studio": {
+      "import": "./dist/studio/index.js",
+      "types": "./dist/studio/index.d.ts"
     }
   },
   "bin": {
