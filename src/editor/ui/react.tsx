@@ -5,9 +5,14 @@ type ReactEditorUIProps = {
   state: unknown;
   renderer: NodeGraphRenderer;
   onNodeMouseDown?: (id: string) => (event: React.MouseEvent<SVGGElement>) => void;
+  theme?: {
+    connection: string;
+    nodeBorder: string;
+    text: string;
+  };
 };
 
-export function ReactEditorUI({ state, renderer, onNodeMouseDown }: ReactEditorUIProps) {
+export function ReactEditorUI({ state, renderer, onNodeMouseDown, theme }: ReactEditorUIProps) {
   const { nodes, connections } = renderer.render(state);
 
   return (
@@ -20,7 +25,7 @@ export function ReactEditorUI({ state, renderer, onNodeMouseDown }: ReactEditorU
           y1={c.from.y}
           x2={c.to.x}
           y2={c.to.y}
-          stroke="#999"
+          stroke={theme?.connection ?? "#999"}
         />
       ))}
 
@@ -33,8 +38,9 @@ export function ReactEditorUI({ state, renderer, onNodeMouseDown }: ReactEditorU
             height={40}
             fill={n.color}
             rx={6}
+            stroke={theme?.nodeBorder}
           />
-          <text x={n.x - 30} y={n.y + 4} fill="#fff">
+          <text x={n.x - 30} y={n.y + 4} fill={theme?.text ?? "#fff"}>
             {n.label}
           </text>
         </g>
