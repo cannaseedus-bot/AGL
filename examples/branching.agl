@@ -1,0 +1,5 @@
+equals(temperature, "hot")
+branch(
+  print("Too hot"),
+  print("All good")
+)
