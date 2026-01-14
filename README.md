@@ -25,6 +25,155 @@ AI handles the typing, compiling, and building.
 
 ---
 
+# 🌌 **create‑agl‑studio**
+### *Spin up a full AGL Studio project in seconds*
+
+```
+npm create agl-studio
+```
+
+AGL Studio is the visual IDE for the **Atomic Glyph Language** — a symbolic, AI‑native programming environment where logic is built from composable glyphs instead of syntax.
+
+This scaffolder gives you a ready‑to‑run Vite + React project with:
+
+- AGL Studio fully mounted  
+- glyph palette  
+- drag‑and‑drop graph editor  
+- live execution preview  
+- model‑assisted flow generator  
+- dark theme + layout  
+- zero configuration  
+
+Perfect for prototyping flows, building custom glyph packs, or embedding AGL Studio into your own tools.
+
+---
+
+## 🚀 **Quick Start**
+
+### 1. Create a new project
+
+```
+npm create agl-studio
+```
+
+### 2. Install dependencies
+
+```
+npm install
+```
+
+### 3. Start the dev server
+
+```
+npm run dev
+```
+
+Your AGL Studio instance will be live at:
+
+```
+http://localhost:5173
+```
+
+---
+
+## 🧩 **What You Get**
+
+### **AGL Studio pre‑mounted**
+A full symbolic editor with:
+
+- node graph canvas  
+- drag‑and‑drop interaction  
+- glyph palette  
+- execution panel  
+- AI flow generator  
+
+### **Modern Vite + React setup**
+Fast, minimal, and ready for customization.
+
+### **TypeScript everywhere**
+Strict, clean, and typed from the ground up.
+
+### **Dark theme included**
+A polished, minimal UI that matches the AGL aesthetic.
+
+---
+
+## 🧠 **Why AGL Studio?**
+
+AGL is built for the world where **AI writes code** and humans shape systems.  
+Instead of syntax, you work with **atomic glyphs** — tiny composable units that represent operations, flows, and logic.
+
+AGL Studio turns these glyphs into:
+
+- visual nodes  
+- executable graphs  
+- AI‑generatable workflows  
+- editable symbolic programs  
+
+It’s not just a language — it’s a new programming medium.
+
+---
+
+## 📦 **Project Structure**
+
+```
+my-agl-app/
+├── index.html
+├── vite.config.ts
+├── tsconfig.json
+├── src/
+│   ├── main.tsx
+│   ├── App.tsx
+│   └── styles.css
+└── public/
+    └── favicon.svg
+```
+
+Everything is clean, minimal, and ready to extend.
+
+---
+
+## 🛠️ **Customize Your Studio**
+
+You can extend your generated project with:
+
+- custom glyph packs  
+- custom palettes  
+- custom node renderers  
+- AI‑assisted flow generation  
+- embedded AGL runtimes  
+- custom themes  
+- plugin systems  
+
+AGL Studio is designed to be **remixable**.
+
+---
+
+## 🌐 **Links**
+
+- **AGL‑ES Runtime** — the core symbolic execution engine  
+- **AGL Studio** — the visual IDE  
+- **Vite Plugin** — embed Studio anywhere  
+- **NPM Package** — `create-agl-studio`  
+
+---
+
+## 🧬 **Philosophy**
+
+AGL is a symbolic language for AI‑native software.  
+It compresses logic into atomic glyphs that can be:
+
+- generated  
+- rearranged  
+- visualized  
+- executed  
+- serialized  
+- compiled  
+
+AGL Studio is the interface layer that makes this symbolic world tangible.
+
+---
+
 ## 📁 agl-es Directory Structure (Alpha Release)
 
 This structure is optimized for:
