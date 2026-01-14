@@ -1,0 +1,76 @@
+{
+  "name": "agl-es",
+  "version": "0.1.0-alpha",
+  "description": "Atomic Glyph Language — ES module runtime for symbolic execution, AI-native workflows, and composable glyph-based computation.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./glyphs": {
+      "import": "./dist/glyphs/index.js",
+      "types": "./dist/glyphs/index.d.ts"
+    },
+    "./runtime": {
+      "import": "./dist/runtime/index.js",
+      "types": "./dist/runtime/index.d.ts"
+    },
+    "./cli": {
+      "import": "./dist/cli/index.js"
+    }
+  },
+  "bin": {
+    "agl": "./dist/cli/index.js"
+  },
+  "scripts": {
+    "dev": "tsc --watch",
+    "build": "tsc && node scripts/build-assets.js",
+    "clean": "rimraf dist",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist/",
+    "assets/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "agl",
+    "atomic-glyph-language",
+    "glyphs",
+    "symbolic",
+    "runtime",
+    "dsl",
+    "esmodule",
+    "ai-native",
+    "compiler",
+    "interpreter",
+    "workflow",
+    "graph",
+    "visual-programming"
+  ],
+  "author": "Michael",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xjson/agl-es.git"
+  },
+  "bugs": {
+    "url": "https://github.com/xjson/agl-es/issues"
+  },
+  "homepage": "https://github.com/xjson/agl-es",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "tslib": "^2.8.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.6.3",
+    "rimraf": "^6.0.1"
+  }
+}
