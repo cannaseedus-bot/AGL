@@ -7,17 +7,38 @@ import { DragLayer } from "./DragLayer.js";
 import { ExecutionPanel } from "./ExecutionPanel.js";
 import { GlyphPalette } from "./GlyphPalette.js";
 import { ModelFlowGenerator } from "./ModelFlowGenerator.js";
+import { useStudioTheme } from "./theme-context.js";
+import type { StudioTheme } from "./theme-types.js";
 
-const buildGlyphColors = () =>
+const colorForCategory = (theme: StudioTheme, category?: string) => {
+  switch (category) {
+    case "math":
+      return theme.glyph.mathColor;
+    case "logic":
+      return theme.glyph.logicColor;
+    case "flow":
+      return theme.glyph.flowColor;
+    case "io":
+      return theme.glyph.ioColor;
+    default:
+      return theme.colors.accent;
+  }
+};
+
+const buildGlyphColors = (theme: StudioTheme) =>
   Object.fromEntries(
-    glyphMeta.all().map((meta) => [meta.name, meta.ui?.color ?? "#555"])
+    glyphMeta.all().map((meta) => [
+      meta.name,
+      meta.ui?.color ?? colorForCategory(theme, meta.category),
+    ])
   );
 
 export function App() {
+  const theme = useStudioTheme();
   const [engine] = useState(() => new EditorEngine());
   const [state, setState] = useState(engine.state);
   const [draggingId, setDraggingId] = useState<string | null>(null);
-  const glyphColors = useMemo(() => buildGlyphColors(), []);
+  const glyphColors = useMemo(() => buildGlyphColors(theme), [theme]);
 
   const renderer = useMemo(() => new NodeGraphRenderer(), []);
 
@@ -45,17 +66,32 @@ export function App() {
         display: "grid",
         gridTemplateColumns: "260px 1fr 260px",
         height: "100vh",
+        background: theme.colors.background,
+        color: theme.colors.text,
+        fontFamily: theme.typography.uiFont,
+        fontSize: theme.typography.baseSize,
       }}
     >
-      <div style={{ borderRight: "1px solid #333", padding: 12 }}>
+      <div
+        style={{
+          borderRight: `1px solid ${theme.colors.border}`,
+          padding: theme.spacing.panelPadding,
+          background: theme.colors.surface,
+        }}
+      >
         <h3>Glyphs</h3>
         <GlyphPalette meta={glyphMeta} onAdd={addGlyphNode} />
       </div>
 
-      <div style={{ position: "relative", background: "#111" }}>
+      <div style={{ position: "relative", background: theme.colors.surfaceAlt }}>
         <ReactEditorUI
           state={state}
           renderer={renderer}
+          theme={{
+            connection: theme.colors.connection,
+            nodeBorder: theme.colors.nodeBorder,
+            text: theme.colors.text,
+          }}
           onNodeMouseDown={(id) => (event) => {
             event.stopPropagation();
             setDraggingId(id);
@@ -69,7 +105,13 @@ export function App() {
         />
       </div>
 
-      <div style={{ borderLeft: "1px solid #333", padding: 12 }}>
+      <div
+        style={{
+          borderLeft: `1px solid ${theme.colors.border}`,
+          padding: theme.spacing.panelPadding,
+          background: theme.colors.surface,
+        }}
+      >
         <h3>Execution</h3>
         <ExecutionPanel state={state} />
         <ModelFlowGenerator
