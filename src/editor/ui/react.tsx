@@ -4,9 +4,10 @@ import { NodeGraphRenderer } from "../renderer.js";
 type ReactEditorUIProps = {
   state: unknown;
   renderer: NodeGraphRenderer;
+  onNodeMouseDown?: (id: string) => (event: React.MouseEvent<SVGGElement>) => void;
 };
 
-export function ReactEditorUI({ state, renderer }: ReactEditorUIProps) {
+export function ReactEditorUI({ state, renderer, onNodeMouseDown }: ReactEditorUIProps) {
   const { nodes, connections } = renderer.render(state);
 
   return (
@@ -24,7 +25,7 @@ export function ReactEditorUI({ state, renderer }: ReactEditorUIProps) {
       ))}
 
       {nodes.map((n) => (
-        <g key={n.id}>
+        <g key={n.id} onMouseDown={onNodeMouseDown?.(n.id)}>
           <rect
             x={n.x - 40}
             y={n.y - 20}
