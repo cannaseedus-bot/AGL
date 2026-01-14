@@ -34,7 +34,10 @@
     "dev": "tsc --watch",
     "build": "tsc && node scripts/build-assets.js",
     "clean": "rimraf dist",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "publish:alpha": "node scripts/publish.js alpha --confirm",
+    "publish:beta": "node scripts/publish.js beta --confirm",
+    "publish:stable": "node scripts/publish.js stable --confirm"
   },
   "files": [
     "dist/",
