@@ -315,6 +315,7 @@ console.log(result);
 
 📚 Documentation
 Brand Kit: /branding/palette.md
+Binary-first ingest: /docs/binary-ingest.md
 
 Examples: /examples
 
