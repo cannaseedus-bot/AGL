@@ -1,0 +1,22 @@
+name = "micronaut"
+version = "0.1.0"
+object_type = "SCO/1"
+orchestrator = "PowerShell"
+status = "READY"
+root = "."
+
+[io]
+chat = "io/chat.txt"
+stream = "io/stream.txt"
+snapshot_dir = "io/snapshot"
+
+[brains]
+trigrams = "brains/trigrams.json"
+bigrams = "brains/bigrams.json"
+meta_intent_map = "brains/meta-intent-map.json"
+
+[trace]
+scxq2 = "trace/scxq2.trace"
+
+[proof]
+scxq2 = "proof/scxq2.proof"
